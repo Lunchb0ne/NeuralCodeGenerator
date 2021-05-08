@@ -88,13 +88,7 @@ Simply execute the following after cloning the git repository to a suitable dire
 pip install -r requirements.txt
 ```
 
-Then you should download the `en_web_core_lg` model for spacy using
-
-```sh
-python -m spacy download en_core_web_lg
-```
-
-This model uses ~800MB of memory, so please make sure that you have enough beforehand.
+The script tries to download the `en_web_core_lg` model for spacy, this model uses ~800MB of memory, so please make sure that you have enough beforehand.
 
 Now you can finally use opyrator environment to test out the converter.
 

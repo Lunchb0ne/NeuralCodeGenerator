@@ -6,11 +6,20 @@ import re
 import spacy
 from nltk.tokenize import RegexpTokenizer
 from rich import pretty
+import subprocess
 from subprocess import Popen, PIPE, STDOUT
 
 pretty.install()
 
-nlp = spacy.load('en_core_web_lg')
+try:
+    nlp = spacy.load('en_core_web_lg')
+except:
+    # the model isn't downloaded, so downloading it
+    print("Downloading and Loading the Spacy Model")
+    subprocess.call(['python', '-m', "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load('en_core_web_lg')
+    pass
+
 reserved_vars = set()
 
 keylist = [
@@ -243,12 +252,12 @@ class customParser(Parser):
             return "{} = {} ; {} >= {} ; {}--)".format(p[0], p[2], p[0], p[4], p[0])
 
     @_('')
-    def EXPR(self,p):
-        if EXPR==NUM:
+    def EXPR(self, p):
+        if EXPR == NUM:
             return p.NUM
         else:
             return p.VAR
-            
+
     @_('VAR Q E')
     def INIT(self, p):
         return ("{} = ".format(p.VAR) + p.E)
@@ -425,7 +434,7 @@ def C_Code_Generator(input: Input) -> Output:
 
     outs = parser.parse(lexer.tokenize(input.message))
 
-    p = Popen(["AStyle", "--style=allman"],
+    p = Popen(["astyle", "--style=allman"],
               stdout=PIPE, stdin=PIPE, stderr=PIPE)
     stdout_data = p.communicate(input=outs.encode())[0]
 
