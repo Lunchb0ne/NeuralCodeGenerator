@@ -93,5 +93,13 @@ After all the install steps, you should launch the UI using
 ```sh
 opyrator launch-ui converterfunc:C_Code_Generator
 ```
+Doing so would prompt you to launch a beautiful UI allowing you to interactively test the converter.
+![ui](./doc/ui.png)
+
+You can provide it some input in the message box.
+![message](./doc/input.png)
+
+Then you execute it, be wary that the execution times will depend on the length of the code and the performace of the host computer as it heavily relies on finding vector similarity.
+![output](./doc/c_code.png)
 
 Please note that the project uses a compiled binary from the [Astyle Project](http://astyle.sourceforge.net/), and hence it's included in the source.
