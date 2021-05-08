@@ -108,11 +108,11 @@ class customParser(Parser):
     #      ;
     @_('IF CON THEN CODE ENDIF')
     def ST(self, p):
-        return "if(" + p.CON + ")\n{" + p.CODE + "\n}"
+        return "if(" + p.CON + ")\n{" + p.CODE + "}"
 
     @_('IF CON THEN CODE ELSE CODE ENDIF')
     def ST(self, p):
-        return "if(" + p.CON + ")\n{" + p.CODE0 + "}\nelse\n{" + p.CODE1 + "\n}"
+        return "if(" + p.CON + ")\n{" + p.CODE0 + "}\nelse\n{" + p.CODE1 + "}"
 
     @_('WHILE EXPR THEN CODE ENDWHILE')
     def ST(self, p):

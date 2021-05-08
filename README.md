@@ -40,6 +40,9 @@ It produces the C code as the following
 #include<stdio.h>
 void main()
 {
+    #include<stdio.h>
+void main()
+{
     int num;
     int c;
     int i;
@@ -53,21 +56,19 @@ void main()
         if(c == 0)
         {
             flag=1;
-
         }
     }
     if(flag == 1)
     {
-        printf(" The value ");
+        printf("The value");
         printf("%d",num);
         printf("is not prime");
     }
     else
     {
-        printf(" The value ");
+        printf("The value");
         printf("%d",num);
         printf("is prime");
-
     }
 }
 ```
