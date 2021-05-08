@@ -23,11 +23,11 @@ if flag==1
 then
 print "The value "
 print (num int)
-print "is not prime"
+print " is not prime"
 else
 print "The value "
 print (num int)
-print "is prime"
+print " is prime"
 endif
 end
 ```
