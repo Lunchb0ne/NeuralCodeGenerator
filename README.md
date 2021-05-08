@@ -38,9 +38,7 @@ It produces the C code as the following
 
 ```c
 #include<stdio.h>
-void main()
-{
-    #include<stdio.h>
+
 void main()
 {
     int num;
