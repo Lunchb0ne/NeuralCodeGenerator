@@ -235,13 +235,20 @@ class customParser(Parser):
         else:
             Exception("Both variables should exist before equating.")
 
-    @_('VAR FROM NUM TO NUM')
+    @_('VAR FROM EXPR TO EXPR')
     def INIT(self, p):
         if (p[2] > p[4]):
             return "{} = {} ; {} <= {} ; {}++)".format(p[0], p[2], p[0], p[4], p[0])
         else:
             return "{} = {} ; {} >= {} ; {}--)".format(p[0], p[2], p[0], p[4], p[0])
 
+    @_('')
+    def EXPR(self,p):
+        if EXPR==NUM:
+            return p.NUM
+        else:
+            return p.VAR
+            
     @_('VAR Q E')
     def INIT(self, p):
         return ("{} = ".format(p.VAR) + p.E)
