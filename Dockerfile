@@ -13,4 +13,4 @@ COPY .streamlitconf /root/.streamlit
 
 EXPOSE 80
 
-CMD [ "opyrator", "launch-ui" ,"converterfunc:C_Code_Generator", "--port", "80" ]
+CMD [ "opyrator", "launch-ui" ,"app:C_Code_Generator", "--port", "80" ]
