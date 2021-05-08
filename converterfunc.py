@@ -16,7 +16,7 @@ try:
 except:
     # the model isn't downloaded, so downloading it
     print("Downloading and Loading the Spacy Model")
-    subprocess.call(['python', '-m', "spacy", "download", "en_core_web_sm"])
+    subprocess.call(['python', '-m', "spacy", "download", "en_core_web_lg"])
     nlp = spacy.load('en_core_web_lg')
     pass
 
