@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from sly import Parser, Lexer
 import io
+import os
 import pandas as pd
 import re
 import spacy
@@ -434,7 +435,12 @@ def C_Code_Generator(input: Input) -> Output:
 
     outs = parser.parse(lexer.tokenize(input.message))
 
-    p = Popen(["astyle", "--style=allman"],
+    astyle_caller = "astyle"
+    if os.name == 'nt':
+        print("Host OS is Windows")
+        astyle_caller = "astyle"
+
+    p = Popen([astyle_caller, "--style=allman"],
               stdout=PIPE, stdin=PIPE, stderr=PIPE)
     stdout_data = p.communicate(input=outs.encode())[0]
 
