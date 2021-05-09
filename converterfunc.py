@@ -247,7 +247,7 @@ class customParser(Parser):
 
     @_('VAR FROM EXPR TO EXPR')
     def INIT(self, p):
-        if (p[2] > p[4]):
+        if (p[2] < p[4]):
             return "{} = {} ; {} <= {} ; {}++)".format(p[0], p[2], p[0], p[4], p[0])
         else:
             return "{} = {} ; {} >= {} ; {}--)".format(p[0], p[2], p[0], p[4], p[0])
