@@ -19,8 +19,6 @@ except:
     print("Downloading and Loading the Spacy Model")
     subprocess.call(['python', '-m', "spacy", "download", "en_core_web_lg"])
     nlp = spacy.load('en_core_web_lg')
-    pass
-
 reserved_vars = set()
 
 keylist = [
@@ -333,11 +331,7 @@ def spacysim(word1, word2):
 
 
 def keywordreturner(text):
-    keyw = {}
-    for key in keylist:
-        keyw[key] = set()
-        keyw[key].add(key)
-
+    keyw = {key: {key} for key in keylist}
     df = pd.read_csv(io.StringIO(text), header=None, delimiter="\n")
     df = df.rename(columns={0: "Code"})
     df["Cleaned"] = df["Code"].apply(cleaner)
@@ -359,11 +353,9 @@ def keywordreturner(text):
             print("word : {} , closest match : {} | Sim : {}".format(
                 word, max_key, max_sim))
             if max_sim > 0:
-                if max_key in keyw:
-                    keyw[max_key].add(word)
-                else:
+                if max_key not in keyw:
                     keyw[max_key] = set()
-                    keyw[max_key].add(word)
+                keyw[max_key].add(word)
     return keyw
 
 
